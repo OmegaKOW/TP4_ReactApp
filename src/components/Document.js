@@ -3,10 +3,10 @@ import { FaTimes} from 'react-icons/fa'
 const Document = ({document, onDelete, onToggle}) => {
     return (
         <div 
-             onDoubleClick={() => onToggle(document.id)}>
-            <h3>{document.title} <FaTimes 
+             >
+            <h3>{document.documentID} <FaTimes 
             style={{color: 'red', cursor: 'pointer'}}
-            onClick={()=>onDelete(document.id)}/></h3>
+            onClick={()=>onDelete(document.documentID)}/></h3>
             <p>{document.title}</p>
             <p>{document.author}</p>
             <p>{document.editor}</p>

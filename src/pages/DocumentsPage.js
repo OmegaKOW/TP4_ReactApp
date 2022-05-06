@@ -45,11 +45,11 @@ function DocumentPage(){
     // setTasks([...tasks, newTask])
   }
 
-  const deleteDocument = async (id) => {
-    await fetch(`http://localhost:8080/document/${id}`, {
+  const deleteDocument = async (documentID) => {
+    await fetch(`http://localhost:8080/document/${documentID}`, {
       method: 'DELETE'
     })
-    setDocuments(documents.filter((document) => document.id !== id))
+    setDocuments(documents.filter((document) => document.documentID !== documentID))
   }
     return (
         <div className='container'>

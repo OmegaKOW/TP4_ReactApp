@@ -4,7 +4,7 @@ const Livres = ({livres, onDelete, onToggle}) => {
     
         <>
             {livres.map((livre) => (
-                <Livre key={livre.id} 
+                <Livre key={livre.documentID} 
                 livre={livre} 
                 onDelete={onDelete}
                 onToggle={onToggle}/>

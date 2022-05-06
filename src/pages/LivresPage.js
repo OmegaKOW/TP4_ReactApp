@@ -45,11 +45,11 @@ function LivrePage(){
     // setTasks([...tasks, newTask])
   }
 
-  const deleteLivre = async (id) => {
-    await fetch(`http://localhost:8080/livre/${id}`, {
+  const deleteLivre = async (documentID) => {
+    await fetch(`http://localhost:8080/livre/${documentID}`, {
       method: 'DELETE'
     })
-    setLivres(livres.filter((livre) => livre.id !== id))
+    setLivres(livres.filter((livre) => livre.documentID !== documentID))
   }
     return (
         <div className='container'>

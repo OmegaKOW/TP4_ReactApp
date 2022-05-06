@@ -4,7 +4,7 @@ const Clients = ({clients, onDelete, onToggle}) => {
     
         <>
             {clients.map((client) => (
-                <Client key={client.id} 
+                <Client key={client.clientID} 
                 client={client} 
                 onDelete={onDelete}
                 onToggle={onToggle}/>
