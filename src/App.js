@@ -8,6 +8,7 @@ import About from './components/About';
 import ClientPage from './pages/ClientsPage';
 import DocumentPage from './pages/DocumentsPage';
 import LivrePage from './pages/LivresPage';
+import MediaPage from './pages/MediasPage';
 
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
     </ul>
        <Route path='/clients' component={ClientPage} />
        <Route path='/livres' component={LivrePage} />
+       <Route path='/medias' component={MediaPage} />
        <Route path='/documents' component={DocumentPage} />
        <Route path='/about' component={About} />
        <Footer />

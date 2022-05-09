@@ -1,12 +1,9 @@
-import { FaTimes} from 'react-icons/fa'
 
-const Livre = ({livre, onDelete, onToggle}) => {
+
+const Livre = ({livre}) => {
     return (
         <div >
-             
-            <h3>{livre.documentID} <FaTimes 
-            style={{color: 'red', cursor: 'pointer'}}
-            onClick={()=>onDelete(livre.documentID)}/></h3>
+            <h3>{livre.documentID} </h3>
             <p>{livre.title}</p>
             <p>{livre.author}</p>
             <p>{livre.editor}</p>

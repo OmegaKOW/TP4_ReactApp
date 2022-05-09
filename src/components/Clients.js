@@ -1,5 +1,5 @@
 import Client from './Client'
-const Clients = ({clients, onDelete, onToggle}) => {
+const Clients = ({clients, onDelete, getEmprunts, getDettes, payerDettes, emprunterLivre}) => {
     return (
     
         <>
@@ -7,7 +7,10 @@ const Clients = ({clients, onDelete, onToggle}) => {
                 <Client key={client.clientID} 
                 client={client} 
                 onDelete={onDelete}
-                onToggle={onToggle}/>
+                getEmprunts={getEmprunts}
+                getDettes={getDettes}
+                payerDettes={payerDettes}
+                emprunterLivre={emprunterLivre}/>
             ))}
         </>
     )

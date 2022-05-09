@@ -4,6 +4,7 @@ const AddClient = ({onAdd}) => {
     const [clientName, setClientName] = useState('')
     const [clientAddress, setClientAddress] = useState('')
 
+
     const onSubmit = (e) => {
         e.preventDefault()
 
@@ -15,6 +16,7 @@ const AddClient = ({onAdd}) => {
         onAdd({clientName, clientAddress})
         setClientName('')
         setClientAddress('')
+    
     }
 
     return (
