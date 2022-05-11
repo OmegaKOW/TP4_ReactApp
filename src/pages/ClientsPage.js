@@ -4,6 +4,7 @@ import AddClient from '../components/AddClient';
 import ClientHeader from '../components/ClientHeader';
 import Emprunts from '../components/Emprunts';
 import Dettes from '../components/Dettes';
+import Documents from '../components/Documents';
 
 
 
@@ -13,13 +14,20 @@ function ClientPage(){
     const [clients, setClients] = useState([])
     const [emprunts, setEmprunts] = useState([])
     const [dettes, setDettes] = useState([])
+    const [documents, setDocuments] = useState([])
+    const [clientReturnId, setClientReturnId] = useState([])
+    const [clientEmpruntId, setClientEmpruntId] = useState([])
+    const [showReturnButton, setShowReturnButton] = useState([])
+
 
     useEffect(() => {
         const getClients = async () => {
          const clientsFromServer = await fetchClients()
          setClients(clientsFromServer)
      }
+     
     getClients()
+    setShowReturnButton(false)
   }, [])  // Ajout de dependency array pour prevenir le 'useEffect' a chaquer 'render()'
   // C'est comme le lifecycle event 'ComponentDidMount'
 
@@ -57,6 +65,7 @@ function ClientPage(){
   }
 
   const getMyEmprunts = async (id) => {
+    setShowReturnButton(false)
     const res = await fetch(`http://localhost:8080/emprunts/${id}`)
     const data = await res.json()
     console.log(data)
@@ -76,11 +85,32 @@ function ClientPage(){
   }
 
   const emprunterUnLivre = async (id) => {
-    let clientId = id;
-    var bookId = window.prompt("Enter the book's ID")
-    const res = await fetch(`http://localhost:8080/emprunter/${clientId}/${bookId}`)
-    console.log(res)
+    console.log(id)
+    setClientEmpruntId(id)
+    const res = await fetch('http://localhost:8080/documents')
+    const data = await res.json()
+    setDocuments(data)
   }
+
+  const emprunterGetDocument = async (id) => {
+    console.log(id)
+    await fetch(`http://localhost:8080/emprunter/${clientEmpruntId}/${id}`)
+  }
+
+
+
+  const retournerAvecClient = async (id) => {
+    setClientReturnId(id)
+    setShowReturnButton(true)
+    const res = await fetch(`http://localhost:8080/emprunts/${id}`)
+    const data = await res.json()
+    setEmprunts(data)
+    
+  }
+  const returnDocument = async (id) => {
+    await fetch(`http://localhost:8080/retourner/${clientReturnId}/${id}`)
+  }
+
 
 
     return (
@@ -97,28 +127,44 @@ function ClientPage(){
                     getEmprunts={getMyEmprunts}
                     getDettes={getMyDettes}
                     payerDettes={payerDettes}
-                    emprunterLivre={emprunterUnLivre} 
+                    emprunterLivre={emprunterUnLivre}
+                    retournerLivre={retournerAvecClient} 
                     />
                 : 'No clients'} 
                 </>
 
                 <>
-                  <h3>Emprunts</h3>
+                  
                   { emprunts.length > 0 ?
-                    <Emprunts emprunts={emprunts}/> :
-                    'empty'
+                  <>
+                    <h3>Emprunts</h3>
+                    <Emprunts emprunts={emprunts} returnDocument={returnDocument} showReturnButton={showReturnButton}/> </>:
+                    null
                   }
                   
                 </>
                 <>
-                  <h3>dettes</h3>
+                  
                   { dettes.length > 0 ?
-                    <Dettes dettes={dettes}/> :
-                    'empty'
+                    <>
+                    <h3>Dettes</h3>
+                    <Dettes dettes={dettes}/> 
+                    </>:
+                    null
                   }
                   
                 </>
-
+                <>
+                  
+                  { documents.length > 0 ?
+                    <>
+                    <h3>Document à emprunter:</h3>
+                    <Documents documents={documents} showEmpruntButton={true} emprunterLivre={emprunterGetDocument}/> 
+                    </>:
+                    null
+                  }
+                  
+                </>
 
             </div>
         </div>

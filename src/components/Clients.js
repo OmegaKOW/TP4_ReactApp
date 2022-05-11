@@ -1,5 +1,5 @@
 import Client from './Client'
-const Clients = ({clients, onDelete, getEmprunts, getDettes, payerDettes, emprunterLivre}) => {
+const Clients = ({clients, onDelete, getEmprunts, getDettes, payerDettes, emprunterLivre, retournerLivre}) => {
     return (
     
         <>
@@ -10,7 +10,8 @@ const Clients = ({clients, onDelete, getEmprunts, getDettes, payerDettes, emprun
                 getEmprunts={getEmprunts}
                 getDettes={getDettes}
                 payerDettes={payerDettes}
-                emprunterLivre={emprunterLivre}/>
+                emprunterLivre={emprunterLivre}
+                retournerLivre={retournerLivre}/>
             ))}
         </>
     )

@@ -1,5 +1,5 @@
 import Document from './Document'
-const Documents = ({documents, onDelete, onToggle}) => {
+const Documents = ({documents, onDelete, onToggle, showEmpruntButton, emprunterLivre}) => {
     return (
     
         <>
@@ -7,7 +7,9 @@ const Documents = ({documents, onDelete, onToggle}) => {
                 <Document key={document.documentID} 
                 document={document} 
                 onDelete={onDelete}
-                onToggle={onToggle}/>
+                onToggle={onToggle}
+                showEmpruntButton={showEmpruntButton}
+                emprunterLivre={emprunterLivre}/>
             ))}
         </>
     )
